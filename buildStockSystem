@@ -1,0 +1,2 @@
+javac *.java
+jar cvfm StockSystem.jar manifest.txt *.class
