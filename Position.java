@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class Position {
 
@@ -9,28 +11,31 @@ public class Position {
 	private double price;
 	private double shares;
 	
-	public Position(String symbol, double proportion, double shares) throws IOException {
+	public static HashMap<String, Double> priceDictionary = new HashMap<String, Double>();
+	
+	public Position(String symbol, double proportion, double shares) {
 		this.symbol = symbol;
 		this.shares = shares;
 		this.proportion = proportion;
-		updatePrice();
+		this.price = getPrice();
 	}
 	
-	public double getPrice() throws IOException {
-		updatePrice();
-		return price;
+	public double getPrice()  {
+		if (priceDictionary.containsKey(symbol)) {
+			return priceDictionary.get(symbol);
+		} else {
+			updatePrice();
+			return priceDictionary.get(symbol);
+		}	
 	}
 	
-	private void updatePrice() throws IOException {
-		String url = "https://query1.finance.yahoo.com/v6/finance/quote?symbols=" + symbol;
-		URL yf = new URL(url);
-        URLConnection positionData = yf.openConnection();
-        Scanner input = new Scanner(positionData.getInputStream());
-        String result = input.nextLine();
-        int index1 = result.indexOf("regularMarketPrice\":");
-        int index2 = result.indexOf(":", index1);
-        int index3 = result.indexOf(",", index1);
-        price = Double.parseDouble(result.substring(index2+1, index3));
+	private void updatePrice()  {
+		JTextField priceField = new JTextField();
+		Object[] message = {"Enter current price for " + symbol + ": ", priceField};
+		int result = JOptionPane.showConfirmDialog(null,  message, "Enter price information", JOptionPane.OK_CANCEL_OPTION);
+		if (result != JOptionPane.OK_CANCEL_OPTION) {
+			priceDictionary.put(symbol, Double.parseDouble(priceField.getText()));
+		}
 	}
 
 	public String getSymbol() {
@@ -48,4 +53,5 @@ public class Position {
 	public void setShares(double shares) {
 		this.shares = shares;
 	}
+	
 }

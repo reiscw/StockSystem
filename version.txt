@@ -1,3 +1,4 @@
 Version 1.0 - Initial version written as console application in Java
 Version 2.0 - Revised version written as GUI application in Java
 Version 2.1 - Revised to remove dependency on Maven packages to access Yahoo Finance data
+Version 2.2 - Removed online quote functionality due to no good free providers being available

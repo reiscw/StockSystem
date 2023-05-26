@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -487,7 +487,7 @@ public class StockSystem extends JPanel {
 	}
 	
 	public static void main (String[] args) throws IOException {
-        JFrame frame = new JFrame("Stock Management System");
+        JFrame frame = new JFrame("Stock Management System Version 2.2");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new StockSystem());
         frame.pack();
