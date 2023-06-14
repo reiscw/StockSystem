@@ -33,7 +33,7 @@ public class Position {
 		JTextField priceField = new JTextField();
 		Object[] message = {"Enter current price for " + symbol + ": ", priceField};
 		int result = JOptionPane.showConfirmDialog(null,  message, "Enter price information", JOptionPane.OK_CANCEL_OPTION);
-		if (result != JOptionPane.OK_CANCEL_OPTION) {
+		if (result == JOptionPane.OK_OPTION) {
 			priceDictionary.put(symbol, Double.parseDouble(priceField.getText()));
 		}
 	}

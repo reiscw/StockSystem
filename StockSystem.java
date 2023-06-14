@@ -184,7 +184,7 @@ public class StockSystem extends JPanel {
 		JTextField name = new JTextField();
 		Object[] message = {"Cash balance: ", balance, "Number of positions", num, "Keyword (used as filename): ", name};
 		int result = JOptionPane.showConfirmDialog(null,  message, "Initial File Setup", JOptionPane.OK_CANCEL_OPTION);
-		if (result != JOptionPane.OK_CANCEL_OPTION) {
+		if (result == JOptionPane.OK_OPTION) {
 			double cashBalance = Double.parseDouble(balance.getText());
 			int numPositions = Integer.parseInt(num.getText());
 			String filename = name.getText();
@@ -228,7 +228,7 @@ public class StockSystem extends JPanel {
     	JTextField cash = new JTextField();
     	Object[] message = {"Enter new cash balance: ", cash};
     	int result = JOptionPane.showConfirmDialog(null,  message, "Updating Cash Balance", JOptionPane.OK_CANCEL_OPTION);
-    	if (result != JOptionPane.OK_CANCEL_OPTION) {
+    	if (result == JOptionPane.OK_OPTION) {
     		double newCash = Double.parseDouble(cash.getText());
     		target.setCashBalance(newCash);
     		target.writeFile();
@@ -251,7 +251,7 @@ public class StockSystem extends JPanel {
         	JTextField shares = new JTextField();
         	Object[] message = {"Enter new shares: ", shares};
         	int result = JOptionPane.showConfirmDialog(null,  message, "Updating Shares", JOptionPane.OK_CANCEL_OPTION);
-        	if (result != JOptionPane.OK_CANCEL_OPTION) {
+        	if (result == JOptionPane.OK_OPTION) {
         		double newShares = Double.parseDouble(shares.getText());
         		for (Position position : target.getPositions()) {
         			if (position.getSymbol().contentEquals(symbolToBeUpdated)) {
@@ -297,7 +297,7 @@ public class StockSystem extends JPanel {
     	message[positions.size()] = "Your new cash balance will be $" + newCashBalance;
     	message[positions.size()+1] = "Click OK to accept these transactions and make the trades, otherwise cancel";
     	int result = JOptionPane.showConfirmDialog(null, message, "Proposed transactions: ", JOptionPane.OK_CANCEL_OPTION);
-    	if (result != JOptionPane.OK_CANCEL_OPTION) {
+    	if (result == JOptionPane.OK_OPTION) {
     		for (int i = 0; i < positions.size(); i++) {
     			positions.get(i).setShares(newShares[i]);
     		}
@@ -339,14 +339,14 @@ public class StockSystem extends JPanel {
     	}
     	message[positions.size()] = "Your new cash balance will be $" + newCashBalance;
     	message[positions.size()+1] = "Please note that for mutual fund transactions, you must update positions manually.";
-    	JOptionPane.showConfirmDialog(null, message, "Proposed transactions: ", JOptionPane.OK_CANCEL_OPTION);
+    	JOptionPane.showConfirmDialog(null, message, "Proposed transactions: ", JOptionPane.OK_OPTION);
 	}
 	
 	private void withdrawal() throws IOException {
 		JTextField cash = new JTextField();
     	Object[] withdrawalMessage = {"Enter cash desired for withdrawal: ", cash};
-    	int result = JOptionPane.showConfirmDialog(null,  withdrawalMessage, "Withdrawal", JOptionPane.OK_CANCEL_OPTION);
-    	if (result != JOptionPane.OK_CANCEL_OPTION) {
+    	int result = JOptionPane.showConfirmDialog(null,  withdrawalMessage, "Withdrawal", JOptionPane.OK_OPTION);
+    	if (result == JOptionPane.OK_OPTION) {
     		double cashDesired = Double.parseDouble(cash.getText());
     		String choice = (String) choices.getSelectedItem();
 	    	Portfolio target = portfolioWithFilename(choice);
@@ -380,7 +380,7 @@ public class StockSystem extends JPanel {
 	    	message[positions.size()] = "Your new cash balance will be $" + newCashBalance;
 	    	message[positions.size()+1] = "Click OK to accept these transactions and make the trades, otherwise cancel";
 	    	result = JOptionPane.showConfirmDialog(null, message, "Proposed transactions: ", JOptionPane.OK_CANCEL_OPTION);
-	    	if (result != JOptionPane.OK_CANCEL_OPTION) {
+	    	if (result == JOptionPane.OK_OPTION) {
 	    		for (int i = 0; i < positions.size(); i++) {
 	    			positions.get(i).setShares(newShares[i]);
 	    		}
@@ -399,7 +399,7 @@ public class StockSystem extends JPanel {
 		JTextField share = new JTextField();
 		Object[] positionMessage = {"Symbol: ", sym, "Percent of portfolio: ", prop, "Current shares: ", share};
 		int result = JOptionPane.showConfirmDialog(null, positionMessage, "Enter a Position", JOptionPane.OK_CANCEL_OPTION);
-    	if (result != JOptionPane.OK_CANCEL_OPTION) {
+    	if (result == JOptionPane.OK_OPTION) {
     		String symbol = sym.getText();
     		double proportion = Double.parseDouble(prop.getText());
     		double shares = Double.parseDouble(share.getText());
@@ -487,7 +487,7 @@ public class StockSystem extends JPanel {
 	}
 	
 	public static void main (String[] args) throws IOException {
-        JFrame frame = new JFrame("Stock Management System Version 2.2");
+        JFrame frame = new JFrame("Stock Management System Version 2.3");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new StockSystem());
         frame.pack();
