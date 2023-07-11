@@ -487,7 +487,7 @@ public class StockSystem extends JPanel {
 	}
 	
 	public static void main (String[] args) throws IOException {
-        JFrame frame = new JFrame("Stock Management System Version 2.3");
+        JFrame frame = new JFrame("Stock Management System Version 2.4");
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new StockSystem());
         frame.pack();
